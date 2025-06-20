@@ -1,15 +1,12 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.30;
+
 import {SubscriptionStorage} from "./SubscriptionStorage.sol";
 
 contract SubscriptionLogicV1 is SubscriptionStorage {
     error SubscriptionLogicV1__NotEnoughFuns();
 
-    function addSubscriptionPlan(
-        uint256 _planId,
-        uint256 _price,
-        uint256 _duration
-    ) external {
+    function addSubscriptionPlan(uint256 _planId, uint256 _price, uint256 _duration) external {
         plan[_planId].price = _price;
         plan[_planId].duration = _duration;
         plan[_planId].exists = true;

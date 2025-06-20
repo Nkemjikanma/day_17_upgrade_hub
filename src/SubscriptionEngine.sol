@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.30;
+
 import {SubscriptionStorage} from "./SubscriptionStorage.sol";
 
 // users interact with this but it delegats logic to logic contract
@@ -20,9 +21,7 @@ contract SubscriptionEngine is SubscriptionStorage {
         logicContract = _logicContract;
     }
 
-    function upgradeEngineContract(
-        address _newLogicContract
-    ) external onlyOwner {
+    function upgradeEngineContract(address _newLogicContract) external onlyOwner {
         logicContract = _newLogicContract;
     }
 
@@ -48,12 +47,8 @@ contract SubscriptionEngine is SubscriptionStorage {
             // if logic fails, revert and return the error
             // else return the result back to original caller - as if proxy executed
             switch result
-            case 0 {
-                revert(0, returndatasize())
-            }
-            default {
-                return(0, returndatasize())
-            }
+            case 0 { revert(0, returndatasize()) }
+            default { return(0, returndatasize()) }
         }
     }
 
